@@ -22,7 +22,7 @@ public class BookingServiceImpl implements BookingService {
 
 
 	Scanner scanner = new Scanner(System.in);
-	// int bookingCounter = 1; // Starting value for booking IDs
+	// int bookingCounter = 1;
 
 	public void chooseOption() {
 		boolean exit = false;

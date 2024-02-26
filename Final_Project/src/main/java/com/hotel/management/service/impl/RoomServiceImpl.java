@@ -9,6 +9,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.hotel.management.layout.DesignLayouts;
 import com.hotel.management.service.RoomService;
 import com.hotel.management.util.DBConnectionManager;
 
@@ -109,11 +110,7 @@ public class RoomServiceImpl implements RoomService {
     public void executeUserChoice() {
         int choice = 0;
         do { 
-            System.out.println("1. Search Rooms by Type");
-            System.out.println("2. Search Rooms by Price");
-            System.out.println("3. Search Rooms by AC Status");
-            System.out.println("4. Display Available Rooms");
-            System.out.println("5. Exit");
+        	DesignLayouts.printRoomSearchOptions();
             System.out.print("Enter your choice: ");
             try {
                 choice = scanner.nextInt();

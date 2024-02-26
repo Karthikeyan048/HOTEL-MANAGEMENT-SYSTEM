@@ -33,4 +33,17 @@ public class DesignLayouts {
 	        System.out.println("===========================================");
 	        System.out.print("Enter your choice: ");
 	    }
+	 public static void printRoomSearchOptions() {
+		    System.out.println("************************************************************");
+		    System.out.println("*                      HOTEL MANAGEMENT                    *");
+		    System.out.println("*                       ROOM SEARCH                        *");
+		    System.out.println("************************************************************");
+		    System.out.println("* 1. Search Rooms by Type                                  *");
+		    System.out.println("* 2. Search Rooms by Price                                 *");
+		    System.out.println("* 3. Search Rooms by AC Status                             *");
+		    System.out.println("* 4. Display Available Rooms                               *");
+		    System.out.println("* 5. Exit                                                  *");
+		    System.out.println("************************************************************");
+		}
+
 }
