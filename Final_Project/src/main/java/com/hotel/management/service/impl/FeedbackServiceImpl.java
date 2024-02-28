@@ -31,7 +31,8 @@ public class FeedbackServiceImpl implements FeedbackService {
             System.out.println("Thank you for your feedback. Have a great day!");
         }
     }
-
+    
+    //get CustId By Email
     private int getCustIdByEmail(String customerEmail, Connection connection) {
         int custId = -1; // Default value if customer is not found
         String query = "SELECT Cust_ID FROM Customer WHERE Email = ?";
@@ -48,7 +49,8 @@ public class FeedbackServiceImpl implements FeedbackService {
         }
         return custId;
     }
-
+    
+    //SAVE FEEDBACK TO DATABASE
     private void saveFeedbackToDatabase(int custId, String feedback, Connection connection) {
         String insertQuery = "INSERT INTO Feedback (Feedback_ID, Cust_ID, Feedback_Message, Feedback_Date) VALUES (?, ?, ?, ?)";
         try (PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
@@ -72,7 +74,8 @@ public class FeedbackServiceImpl implements FeedbackService {
             e.printStackTrace();
         }
     }
-
+    
+    //GET MAX FEEDBACKID
     private int getMaxFeedbackId(Connection connection) throws SQLException {
         int maxFeedbackId = 0;
         String query = "SELECT MAX(Feedback_ID) AS MaxFeedbackId FROM Feedback";

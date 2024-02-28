@@ -8,7 +8,7 @@ public class DesignLayouts {
 	        System.out.println("*                  System                  *");
 	        System.out.println("*                                          *");
 	        System.out.println("********************************************");
-	        System.out.println("Are you a customer or an admin? (Enter 'customer' or 'admin'):");
+	        System.out.println("Are you a customer or an admin or Guest? (Enter 1 for 'customer' or 2 for 'admin' or 3 for Guest or 4 for Exit ):");
 	    }
 	 
 	 public static void displayBookingMenu() {

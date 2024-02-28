@@ -56,6 +56,8 @@ public class BookingServiceImpl implements BookingService {
 		}}
 	}
 
+	
+	// BOOK ROOM
 	public void bookRoom() {
 		try {
 			System.out.println("Enter Customer ID:");
@@ -137,7 +139,8 @@ public class BookingServiceImpl implements BookingService {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//CANCEL BOOKING
 	public void cancelBooking() {
 		try (Connection connection = DBConnectionManager.getConnection()) {
 			System.out.println("Enter Booking ID to cancel:");
@@ -183,6 +186,8 @@ public class BookingServiceImpl implements BookingService {
 			e.printStackTrace();
 		}
 	}
+	
+	//REFUND AMOUNT
 	public void refundAmount() {
 	    try (Connection connection = DBConnectionManager.getConnection()) {
 	        System.out.println("Enter Booking ID for refund:");
@@ -208,7 +213,7 @@ public class BookingServiceImpl implements BookingService {
 
 	                        if (paymentStatus.equals("paid")) {
 	                            // Refund the amount
-	                            // Assuming the refund process involves updating payment status and returning the amount
+	                            // the refund process involves updating payment status and returning the amount
 	                            String refundQuery = "UPDATE Payment SET Payment_Status = 'refunded' WHERE Booking_ID = ?";
 	                            try (PreparedStatement refundStatement = connection.prepareStatement(refundQuery)) {
 	                                refundStatement.setInt(1, bookingId);
@@ -302,13 +307,14 @@ public class BookingServiceImpl implements BookingService {
 
 			if (resultSet.next()) {
 				String availability = resultSet.getString("Availability");
-				return availability;
+				return availability; 
 			} else {
 				return "Not Found"; // Return a default value if room not found
 			}
 		}
 	}
-
+	
+	// GET ROOM PRICE
 	private double getRoomPrice(int roomId) throws SQLException {
 		Connection connection = DBConnectionManager.getConnection();
 		String query = "SELECT Price FROM Room WHERE Room_ID = ?";
@@ -323,7 +329,8 @@ public class BookingServiceImpl implements BookingService {
 			}
 		}
 	}
-
+	
+	// UPDATE ROOM AVAILABILITY
 	private void updateRoomAvailability(int roomId, String availability) throws SQLException {
 		Connection connection = DBConnectionManager.getConnection(); 
 		String updateQuery = "UPDATE Room SET Availability = ? WHERE Room_ID = ?";

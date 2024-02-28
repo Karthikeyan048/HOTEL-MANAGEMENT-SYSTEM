@@ -9,6 +9,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     static Scanner scanner = new Scanner(System.in);
 
+    // method to addPayment
     public void addPayment(int bookingId, double amountPaid, Connection connection) {
         try {
             int paymentId = generatePaymentId(connection);
@@ -36,7 +37,8 @@ public class PaymentServiceImpl implements PaymentService {
             e.printStackTrace();
         }
     }
-
+    
+    // send notification to customer
     private void sendNotificationToCustomer(int bookingId, String customerEmail, Connection connection) {
         try {
             String bookingDetails = getBookingDetailsFromDatabase(bookingId, connection);
@@ -53,7 +55,7 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
-
+    // getbooking details from database
     private String getBookingDetailsFromDatabase(int bookingId, Connection connection) throws Exception {
         String query = "SELECT * FROM Booking WHERE Booking_ID = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -98,6 +100,7 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
+    //get room type
     private String getRoomType(int roomId, Connection connection) throws SQLException {
         String query = "SELECT Room_Type FROM Room WHERE Room_ID = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -110,7 +113,8 @@ public class PaymentServiceImpl implements PaymentService {
             }
         }
     }
-
+    
+    // generate  by payment id
     private int generatePaymentId(Connection connection) throws SQLException {
         int paymentId = 0;
         String query = "SELECT MAX(Payment_ID) AS MaxPaymentId FROM Payment";
@@ -122,6 +126,9 @@ public class PaymentServiceImpl implements PaymentService {
         }
         return paymentId;
     }
+    
+    
+    //add credit card payment
     private void addCreditCardPayment(int paymentId, int bookingId, double amountPaid, String paymentStatus, Connection connection) throws SQLException {
       
         String insertQuery = "INSERT INTO Payment (Payment_ID, Booking_ID, Amount_Paid, Payment_Type, Payment_Status) VALUES (?, ?, ?, 'Credit Card', ?)";
@@ -141,6 +148,7 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
+    // add cash payment
     private void addCashPayment(int paymentId, int bookingId, double amountPaid, String paymentStatus, Connection connection) throws SQLException {
         // Here you implement the logic to add cash payment to the database
         String insertQuery = "INSERT INTO Payment (Payment_ID, Booking_ID, Amount_Paid, Payment_Type, Payment_Status) VALUES (?, ?, ?, 'Cash', ?)";
@@ -201,7 +209,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
 
-   
+    //display payment Menu
     private void displayPaymentMenu() {
         System.out.println("Choose payment method:");
         System.out.println("1. Credit Card");

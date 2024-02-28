@@ -21,6 +21,7 @@ public class RoomServiceImpl implements RoomService {
         this.scanner = new Scanner(System.in);    //This is a constructor for the RoomServiceImpl class. It initializes the scanner object to read input from the console.
     }
 
+    //SEARCH ROOMS BY TYPE
     @Override
     public List<Integer> searchRoomsByType(String roomType) {
         String selectQuery = "SELECT Room_ID FROM Room WHERE Room_Type = ?";
@@ -42,6 +43,7 @@ public class RoomServiceImpl implements RoomService {
         return roomIDs;
     }
 
+    //SEARCH ROOMS BY PRICE
     @Override
     public List<Integer> searchRoomsByPrice(double price) {
         String selectQuery = "SELECT Room_ID FROM Room WHERE Price <= ?";
@@ -62,7 +64,8 @@ public class RoomServiceImpl implements RoomService {
         }
         return roomIDs;
     }
-
+    
+    //SEARCH ROOMS BY AC STATUS
     @Override
     public List<Integer> searchRoomsByACStatus(String acStatus) {
         String selectQuery = "SELECT Room_ID FROM Room WHERE AC = ?";
@@ -85,7 +88,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
 
-
+    //DISPLAY AVAILABLE ROOMS
     public void displayAvailableRooms() {
         System.out.println("Available Rooms:");
         try (Connection connection = DBConnectionManager.getConnection()) {
@@ -107,6 +110,7 @@ public class RoomServiceImpl implements RoomService {
         }
     }
 
+    // execute user choice
     public void executeUserChoice() {
         int choice = 0;
         do { 
@@ -118,7 +122,8 @@ public class RoomServiceImpl implements RoomService {
 
                 switch (choice) {
                     case 1:
-                        System.out.print("Enter room type: ");
+                        System.out.print("Enter room type:  (Single ,Double ,Suite)");
+                        
                         String roomType = scanner.nextLine();
                         List<Integer> roomIDsByType = searchRoomsByType(roomType);
                         if (roomIDsByType.isEmpty()) {
@@ -128,7 +133,7 @@ public class RoomServiceImpl implements RoomService {
                         }
                         break;
                     case 2:
-                        System.out.print("Enter the price: ");
+                        System.out.print("Enter the price: (500,1000,2500,5000)");
                         double price = scanner.nextDouble();
                         List<Integer> roomIDsByPrice = searchRoomsByPrice(price);
                         if (roomIDsByPrice.isEmpty()) {

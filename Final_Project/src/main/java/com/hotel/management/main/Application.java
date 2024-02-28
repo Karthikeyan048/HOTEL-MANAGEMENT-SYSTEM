@@ -34,7 +34,7 @@ public class Application {
             System.out.println("2. ADMIN");
             System.out.println("3. GUEST");
             System.out.println("4. EXIT");
-            
+            System.out.println("Enter your choice : ");
             try {
                 int userTypeChoice = scanner.nextInt();
 
@@ -47,6 +47,7 @@ public class Application {
                         System.out.println("2. LOGIN");
                         System.out.println("3. GO BACK");
                         try {
+                        	System.out.println("Enter your choice : ");
                             int customerChoice = scanner.nextInt();
                             switch (customerChoice) {
                                 case 1: // Register
@@ -61,7 +62,7 @@ public class Application {
                                     if (customerService.login(userName, password)) {
                                         System.out.println("Logged in as customer.");
 
-                                        // Display all available rooms
+                                        // search
                                         ((RoomServiceImpl) roomService).executeUserChoice();                               
 
                                         // Proceed to booking
@@ -119,7 +120,7 @@ public class Application {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please enter a number.");
-                scanner.nextLine(); // Consume the invalid input
+                scanner.nextLine();
             }
         }
     }
